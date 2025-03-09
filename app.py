@@ -1,11 +1,10 @@
-from flask import Flask, render_template, request, redirect, session, flash
+from flask import Flask, render_template, request, redirect
 import sqlite3
 from datetime import datetime, timedelta
 import csv
 from io import StringIO
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Required for session management
 
 # Helper function to get alerts
 def get_alerts():
@@ -49,23 +48,17 @@ def get_alerts():
 # Home Page - Display All Cars
 @app.route('/')
 def home():
-    if 'user_id' not in session:
-        return redirect('/login')
-
     conn = sqlite3.connect('car_rental.db')
     c = conn.cursor()
     c.execute("SELECT * FROM cars")
     cars = c.fetchall()
     conn.close()
     alerts = get_alerts()
-    return render_template('index.html', cars=cars, alerts=alerts, role=session.get('role'))
+    return render_template('index.html', cars=cars, alerts=alerts, role=None)
 
 # Add Car Page
 @app.route('/add_car', methods=['GET', 'POST'])
 def add_car():
-    if 'user_id' not in session or session.get('role') != 'Admin':
-        return redirect('/login')
-
     if request.method == 'POST':
         brand = request.form['brand']
         model = request.form['model']
@@ -87,9 +80,6 @@ def add_car():
 # View Clients Page
 @app.route('/clients')
 def clients():
-    if 'user_id' not in session or session.get('role') != 'Admin':
-        return redirect('/login')
-
     conn = sqlite3.connect('car_rental.db')
     c = conn.cursor()
     c.execute("SELECT * FROM clients")
@@ -101,9 +91,6 @@ def clients():
 # Add Client Page
 @app.route('/add_client', methods=['GET', 'POST'])
 def add_client():
-    if 'user_id' not in session or session.get('role') != 'Admin':
-        return redirect('/login')
-
     if request.method == 'POST':
         name = request.form['name']
         email = request.form['email']
@@ -124,9 +111,6 @@ def add_client():
 # View Reservations Page
 @app.route('/reservations')
 def reservations():
-    if 'user_id' not in session:
-        return redirect('/login')
-
     conn = sqlite3.connect('car_rental.db')
     c = conn.cursor()
     c.execute('''SELECT reservations.id, cars.brand, cars.model, clients.name, reservations.start_date, reservations.end_date
@@ -136,14 +120,11 @@ def reservations():
     reservations = c.fetchall()
     conn.close()
     alerts = get_alerts()
-    return render_template('reservations.html', reservations=reservations, alerts=alerts, role=session.get('role'))
+    return render_template('reservations.html', reservations=reservations, alerts=alerts, role=None)
 
 # Add Reservation Page
 @app.route('/add_reservation', methods=['GET', 'POST'])
 def add_reservation():
-    if 'user_id' not in session or session.get('role') != 'Admin':
-        return redirect('/login')
-
     if request.method == 'POST':
         car_id = request.form['car_id']
         client_id = request.form['client_id']
@@ -185,9 +166,6 @@ def add_reservation():
 # View Contracts Page
 @app.route('/contracts')
 def contracts():
-    if 'user_id' not in session:
-        return redirect('/login')
-
     conn = sqlite3.connect('car_rental.db')
     c = conn.cursor()
     c.execute('''SELECT contracts.id, cars.brand, cars.model, clients.name, reservations.start_date, reservations.end_date, contracts.total_price
@@ -198,14 +176,11 @@ def contracts():
     contracts = c.fetchall()
     conn.close()
     alerts = get_alerts()
-    return render_template('contracts.html', contracts=contracts, alerts=alerts, role=session.get('role'))
+    return render_template('contracts.html', contracts=contracts, alerts=alerts, role=None)
 
 # Generate Contract Page
 @app.route('/generate_contract/<int:reservation_id>', methods=['GET', 'POST'])
 def generate_contract(reservation_id):
-    if 'user_id' not in session or session.get('role') != 'Admin':
-        return redirect('/login')
-
     if request.method == 'POST':
         total_price = request.form['total_price']
 
@@ -233,9 +208,6 @@ def generate_contract(reservation_id):
 # View Maintenance Page
 @app.route('/maintenance')
 def maintenance():
-    if 'user_id' not in session:
-        return redirect('/login')
-
     conn = sqlite3.connect('car_rental.db')
     c = conn.cursor()
     c.execute('''SELECT maintenance.id, cars.brand, cars.model, maintenance.task, maintenance.due_date, maintenance.status
@@ -244,14 +216,11 @@ def maintenance():
     maintenance_tasks = c.fetchall()
     conn.close()
     alerts = get_alerts()
-    return render_template('maintenance.html', maintenance_tasks=maintenance_tasks, alerts=alerts, role=session.get('role'))
+    return render_template('maintenance.html', maintenance_tasks=maintenance_tasks, alerts=alerts, role=None)
 
 # Add Maintenance Page
 @app.route('/add_maintenance', methods=['GET', 'POST'])
 def add_maintenance():
-    if 'user_id' not in session or session.get('role') != 'Admin':
-        return redirect('/login')
-
     if request.method == 'POST':
         car_id = request.form['car_id']
         task = request.form['task']
@@ -278,9 +247,6 @@ def add_maintenance():
 # View Damage Reports Page
 @app.route('/damage_reports')
 def damage_reports():
-    if 'user_id' not in session:
-        return redirect('/login')
-
     conn = sqlite3.connect('car_rental.db')
     c = conn.cursor()
     c.execute('''SELECT damage_reports.id, cars.brand, cars.model, damage_reports.description, damage_reports.report_date, damage_reports.repair_status
@@ -289,14 +255,11 @@ def damage_reports():
     damage_reports = c.fetchall()
     conn.close()
     alerts = get_alerts()
-    return render_template('damage_reports.html', damage_reports=damage_reports, alerts=alerts, role=session.get('role'))
+    return render_template('damage_reports.html', damage_reports=damage_reports, alerts=alerts, role=None)
 
 # Add Damage Report Page
 @app.route('/add_damage_report', methods=['GET', 'POST'])
 def add_damage_report():
-    if 'user_id' not in session or session.get('role') != 'Admin':
-        return redirect('/login')
-
     if request.method == 'POST':
         car_id = request.form['car_id']
         description = request.form['description']
@@ -323,9 +286,6 @@ def add_damage_report():
 # Reports Page
 @app.route('/reports')
 def reports():
-    if 'user_id' not in session or session.get('role') != 'Admin':
-        return redirect('/login')
-
     conn = sqlite3.connect('car_rental.db')
     c = conn.cursor()
 
@@ -361,9 +321,6 @@ def reports():
 # Export Revenue Report
 @app.route('/export_revenue')
 def export_revenue():
-    if 'user_id' not in session or session.get('role') != 'Admin':
-        return redirect('/login')
-
     conn = sqlite3.connect('car_rental.db')
     c = conn.cursor()
     c.execute("SELECT SUM(total_price) FROM contracts")
@@ -386,9 +343,6 @@ def export_revenue():
 # Export Car Utilization Report
 @app.route('/export_car_utilization')
 def export_car_utilization():
-    if 'user_id' not in session or session.get('role') != 'Admin':
-        return redirect('/login')
-
     conn = sqlite3.connect('car_rental.db')
     c = conn.cursor()
     c.execute('''SELECT cars.brand, cars.model, COUNT(reservations.id) AS rental_count
@@ -415,9 +369,6 @@ def export_car_utilization():
 # Export Maintenance Report
 @app.route('/export_maintenance')
 def export_maintenance():
-    if 'user_id' not in session or session.get('role') != 'Admin':
-        return redirect('/login')
-
     conn = sqlite3.connect('car_rental.db')
     c = conn.cursor()
     c.execute('''SELECT cars.brand, cars.model, maintenance.task, maintenance.due_date, maintenance.status
@@ -443,9 +394,6 @@ def export_maintenance():
 # Export Client Activity Report
 @app.route('/export_client_activity')
 def export_client_activity():
-    if 'user_id' not in session or session.get('role') != 'Admin':
-        return redirect('/login')
-
     conn = sqlite3.connect('car_rental.db')
     c = conn.cursor()
     c.execute('''SELECT clients.name, COUNT(reservations.id) AS reservation_count
