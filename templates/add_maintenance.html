@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Add a New Maintenance Task</h1>
+    {% if alerts %}
+    <div class="alert alert-warning">
+        <h3>Alerts</h3>
+        <ul>
+            {% for alert in alerts %}
+            <li>{{ alert }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <form method="POST" class="mb-4">
+        <div class="mb-3">
+            <label for="car_id" class="form-label">Car</label>
+            <select class="form-control" id="car_id" name="car_id" required>
+                {% for car in cars %}
+                <option value="{{ car[0] }}">{{ car[1] }} {{ car[2] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="task" class="form-label">Task</label>
+            <input type="text" class="form-control" id="task" name="task" required>
+        </div>
+        <div class="mb-3">
+            <label for="due_date" class="form-label">Due Date</label>
+            <input type="date" class="form-control" id="due_date" name="due_date" required>
+        </div>
+        <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <select class="form-control" id="status" name="status" required>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Completed">Completed</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Maintenance Task</button>
+        <a href="/maintenance" class="btn btn-secondary">Back to Maintenance</a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,353 @@
+/* Sidebar Styling */
+.bg-dark {
+    background-color: #e6effd !important; /* Deepseek-inspired dark gray */
+}
+
+.nav-link {
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+    color: #FFFFFF; /* White text */
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-link:hover {
+    background-color: #334155; /* Light gray on hover */
+    color: #FFFFFF;
+}
+
+.nav-link.active {
+    background-color: #2563EB; /* Blue for active item */
+    color: #FFFFFF;
+}
+
+.nav-link i {
+    font-size: 18px; /* Icon size */
+    width: 24px; /* Fixed width for consistent spacing */
+    text-align: center; /* Center the icon */
+}
+
+/* Main Content Styling */
+h1 {
+    color: #1F2937;
+    margin-bottom: 24px;
+    font-weight: 700;
+    font-size: 2rem;
+}
+
+h2 {
+    color: #374151;
+    margin-bottom: 20px;
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+/* Table Styling */
+.table {
+    width: 100%;
+    margin-bottom: 24px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #FFFFFF;
+}
+
+.table th, .table td {
+    padding: 16px;
+    text-align: left;
+    border-bottom: 1px solid #E5E7EB;
+}
+
+.table th {
+    background-color: #2563EB; /* Primary blue for headers */
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+.table tbody tr:hover {
+    background-color: #F3F4F6;
+    transition: background-color 0.3s;
+}
+
+/* Button Styling */
+.btn {
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: background-color 0.3s, transform 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #2563EB;
+    color: #FFFFFF;
+}
+
+.btn-primary:hover {
+    background-color: #1D4ED8;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #6B7280;
+    color: #FFFFFF;
+}
+
+.btn-secondary:hover {
+    background-color: #4B5563;
+    transform: translateY(-2px);
+}
+
+.btn-danger {
+    background-color: #EF4444;
+    color: #FFFFFF;
+}
+
+.btn-danger:hover {
+    background-color: #DC2626;
+    transform: translateY(-2px);
+}
+
+.btn-warning {
+    background-color: #F59E0B;
+    color: #FFFFFF;
+}
+
+.btn-warning:hover {
+    background-color: #D97706;
+    transform: translateY(-2px);
+}
+
+.btn-info {
+    background-color: #10B981;
+    color: #FFFFFF;
+}
+
+.btn-info:hover {
+    background-color: #059669;
+    transform: translateY(-2px);
+}
+
+/* Alert Styling */
+.alert {
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    font-weight: 500;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.alert-warning {
+    background-color: #FEF3C7;
+    border-color: #FDE68A;
+    color: #92400E;
+}
+
+.alert-success {
+    background-color: #D1FAE5;
+    border-color: #A7F3D0;
+    color: #065F46;
+}
+
+.alert-danger {
+    background-color: #FEE2E2;
+    border-color: #FECACA;
+    color: #991B1B;
+}
+
+/* Form Styling */
+.form-control {
+    padding: 12px;
+    border-radius: 8px;
+    border: 1px solid #E5E7EB;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+.form-control:focus {
+    border-color: #2563EB;
+    box-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
+}
+
+/* Card Styling */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: #FFFFFF;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-body {
+    padding: 24px;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #1F2937;
+    margin-bottom: 16px;
+}
+
+.card-text {
+    color: #6B7280;
+}
+
+/* Link Styling */
+a {
+    color: #2563EB;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #1D4ED8;
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-link {
+        padding: 10px 12px;
+    }
+
+    .btn {
+        padding: 10px 20px;
+    }
+
+    .table th, .table td {
+        padding: 12px;
+    }
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px; /* Set sidebar width */
+    background-color: #1E293B; /* Deepseek-inspired dark gray */
+    color: #FFFFFF; /* White text */
+}
+
+.nav-link {
+    padding: 12px 16px;
+    border-radius: 8px;
+    transition: background-color 0.3s, color 0.3s;
+    color: #FFFFFF; /* White text */
+    margin: 8px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.nav-link:hover {
+    background-color: #334155; /* Light gray on hover */
+    color: #FFFFFF;
+}
+
+.nav-link.active {
+    background-color: #2563EB; /* Blue for active item */
+    color: #FFFFFF;
+}
+
+.nav-link i {
+    font-size: 18px; /* Icon size */
+    width: 24px; /* Fixed width for consistent spacing */
+    text-align: center; /* Center the icon */
+}
+
+/* Top Bar Styling */
+.navbar {
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-text {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+/* Alerts Bell */
+.fa-bell {
+    cursor: pointer;
+    color: #6B7280; /* Gray color for the bell */
+}
+
+.fa-bell:hover {
+    color: #2563EB; /* Blue color on hover */
+}
+
+.badge {
+    font-size: 12px;
+    padding: 4px 6px;
+}
+
+/* Create Reservation Button */
+.btn-primary {
+    background-color: #2563EB;
+    border-color: #2563EB;
+}
+
+.btn-primary:hover {
+    background-color: #1D4ED8;
+    border-color: #1D4ED8;
+}
+
+/* Alerts Dropdown Styling */
+.dropdown-menu {
+    max-width: 300px; /* Limit the width of the dropdown */
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item {
+    white-space: normal; /* Allow text to wrap */
+    padding: 8px 12px;
+}
+
+.dropdown-item:hover {
+    background-color: #F3F4F6; /* Light gray on hover */
+}
+
+/* Dashboard Styling */
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: inherit;
+}
+
+.card-text.display-4 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.card-footer {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-top: none;
+}
+
+.table-hover tbody tr:hover {
+    background-color: #F3F4F6;
+}

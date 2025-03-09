@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Reports</h1>
+    {% if alerts %}
+    <div class="alert alert-warning">
+        <h3>Alerts</h3>
+        <ul>
+            {% for alert in alerts %}
+            <li>{{ alert }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Revenue Report -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">Revenue Report</h2>
+            <p class="card-text">Total Revenue: ${{ total_revenue }}</p>
+            <a href="/export_revenue" class="btn btn-primary">Export Revenue Report</a>
+        </div>
+    </div>
+
+    <!-- Car Utilization Report -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">Car Utilization Report</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Car</th>
+                        <th>Rental Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for car in car_utilization %}
+                    <tr>
+                        <td>{{ car[0] }} {{ car[1] }}</td>
+                        <td>{{ car[2] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="/export_car_utilization" class="btn btn-primary">Export Car Utilization Report</a>
+        </div>
+    </div>
+
+    <!-- Maintenance Report -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">Maintenance Report</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Car</th>
+                        <th>Task</th>
+                        <th>Due Date</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for task in maintenance_summary %}
+                    <tr>
+                        <td>{{ task[0] }} {{ task[1] }}</td>
+                        <td>{{ task[2] }}</td>
+                        <td>{{ task[3] }}</td>
+                        <td>{{ task[4] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="/export_maintenance" class="btn btn-primary">Export Maintenance Report</a>
+        </div>
+    </div>
+
+    <!-- Client Activity Report -->
+    <div class="card mb-4">
+        <div class="card-body">
+            <h2 class="card-title">Client Activity Report</h2>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Client</th>
+                        <th>Reservation Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for client in client_activity %}
+                    <tr>
+                        <td>{{ client[0] }}</td>
+                        <td>{{ client[1] }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="/export_client_activity" class="btn btn-primary">Export Client Activity Report</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

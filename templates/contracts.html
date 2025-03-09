@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Contracts</h1>
+    {% if alerts %}
+    <div class="alert alert-warning">
+        <h3>Alerts</h3>
+        <ul>
+            {% for alert in alerts %}
+            <li>{{ alert }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Generate New Contract Button -->
+    <a href="/generate_contract" class="btn btn-primary mb-3">Generate New Contract</a>
+
+    <!-- Contracts Table -->
+    <h2>List of Contracts</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Car</th>
+                <th>Client</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Total Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for contract in contracts %}
+            <tr>
+                <td>{{ contract[0] }}</td>
+                <td>{{ contract[1] }} {{ contract[2] }}</td>
+                <td>{{ contract[3] }}</td>
+                <td>{{ contract[4] }}</td>
+                <td>{{ contract[5] }}</td>
+                <td>${{ contract[6] }}</td>
+                <td>
+                    <a href="/view_contract/{{ contract[0] }}" class="btn btn-info btn-sm">View</a>
+                    <a href="/remove_contract/{{ contract[0] }}" class="btn btn-danger btn-sm">Remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

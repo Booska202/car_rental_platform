@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Maintenance</h1>
+    {% if alerts %}
+    <div class="alert alert-warning">
+        <h3>Alerts</h3>
+        <ul>
+            {% for alert in alerts %}
+            <li>{{ alert }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Add New Maintenance Task Button -->
+    <a href="/add_maintenance" class="btn btn-primary mb-3">Add New Maintenance Task</a>
+
+    <!-- Maintenance Tasks Table -->
+    <h2>List of Maintenance Tasks</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Car</th>
+                <th>Task</th>
+                <th>Due Date</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for task in maintenance_tasks %}
+            <tr>
+                <td>{{ task[0] }}</td>
+                <td>{{ task[1] }} {{ task[2] }}</td>
+                <td>{{ task[3] }}</td>
+                <td>{{ task[4] }}</td>
+                <td>{{ task[5] }}</td>
+                <td>
+                    <a href="/edit_maintenance/{{ task[0] }}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="/remove_maintenance/{{ task[0] }}" class="btn btn-danger btn-sm">Remove</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

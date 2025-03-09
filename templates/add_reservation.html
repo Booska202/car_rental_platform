@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Add a New Reservation</h1>
+{% if alerts %}
+<div class="alert alert-warning">
+    <h3>Alerts</h3>
+    <ul>
+        {% for alert in alerts %}
+        <li>{{ alert }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+<form method="POST" class="mb-4">
+    <div class="mb-3">
+        <label for="car_id" class="form-label">Car</label>
+        <select class="form-control" id="car_id" name="car_id" required>
+            {% for car in cars %}
+            <option value="{{ car[0] }}">{{ car[1] }} {{ car[2] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="client_id" class="form-label">Client</label>
+        <select class="form-control" id="client_id" name="client_id" required>
+            {% for client in clients %}
+            <option value="{{ client[0] }}">{{ client[1] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="start_date" class="form-label">Start Date</label>
+        <input type="date" class="form-control" id="start_date" name="start_date" required>
+    </div>
+    <div class="mb-3">
+        <label for="end_date" class="form-label">End Date</label>
+        <input type="date" class="form-control" id="end_date" name="end_date" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Reservation</button>
+</form>
+<a href="/reservations" class="btn btn-secondary">Back to Reservations</a>
+{% endblock %}

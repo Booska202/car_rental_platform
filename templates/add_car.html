@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Add a New Car</h1>
+    {% if alerts %}
+    <div class="alert alert-warning">
+        <h3>Alerts</h3>
+        <ul>
+            {% for alert in alerts %}
+            <li>{{ alert }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+    <form method="POST" class="mt-4">
+        <div class="mb-3">
+            <label for="brand" class="form-label">Brand</label>
+            <input type="text" class="form-control" id="brand" name="brand" required>
+        </div>
+        <div class="mb-3">
+            <label for="model" class="form-label">Model</label>
+            <input type="text" class="form-control" id="model" name="model" required>
+        </div>
+        <div class="mb-3">
+            <label for="year" class="form-label">Year</label>
+            <input type="number" class="form-control" id="year" name="year" required>
+        </div>
+        <div class="mb-3">
+            <label for="fuel_type" class="form-label">Fuel Type</label>
+            <input type="text" class="form-control" id="fuel_type" name="fuel_type" required>
+        </div>
+        <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <input type="text" class="form-control" id="status" name="status" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Car</button>
+        <a href="/" class="btn btn-secondary">Back to Home</a>
+    </form>
+</div>
+{% endblock %}

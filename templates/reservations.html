@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Reservations</h1>
+    {% if alerts %}
+    <div class="alert alert-warning">
+        <h3>Alerts</h3>
+        <ul>
+            {% for alert in alerts %}
+            <li>{{ alert }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <!-- Add New Reservation Button -->
+    <a href="/add_reservation" class="btn btn-primary mb-3">Add New Reservation</a>
+
+    <!-- Reservations Table -->
+    <h2>List of Reservations</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Car</th>
+                <th>Client</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for reservation in reservations %}
+            <tr>
+                <td>{{ reservation[0] }}</td>
+                <td>{{ reservation[1] }} {{ reservation[2] }}</td>
+                <td>{{ reservation[3] }}</td>
+                <td>{{ reservation[4] }}</td>
+                <td>{{ reservation[5] }}</td>
+                <td>
+                    <a href="/edit_reservation/{{ reservation[0] }}" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="/remove_reservation/{{ reservation[0] }}" class="btn btn-danger btn-sm">Remove</a>
+                    <a href="/generate_contract/{{ reservation[0] }}" class="btn btn-info btn-sm">Generate Contract</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

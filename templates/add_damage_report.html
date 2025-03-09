@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+    <h1>Add a New Damage Report</h1>
+    {% if alerts %}
+    <div class="alert alert-warning">
+        <h3>Alerts</h3>
+        <ul>
+            {% for alert in alerts %}
+            <li>{{ alert }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+
+    <form method="POST" class="mb-4">
+        <div class="mb-3">
+            <label for="car_id" class="form-label">Car</label>
+            <select class="form-control" id="car_id" name="car_id" required>
+                {% for car in cars %}
+                <option value="{{ car[0] }}">{{ car[1] }} {{ car[2] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <input type="text" class="form-control" id="description" name="description" required>
+        </div>
+        <div class="mb-3">
+            <label for="report_date" class="form-label">Report Date</label>
+            <input type="date" class="form-control" id="report_date" name="report_date" required>
+        </div>
+        <div class="mb-3">
+            <label for="repair_status" class="form-label">Repair Status</label>
+            <select class="form-control" id="repair_status" name="repair_status" required>
+                <option value="Pending">Pending</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Resolved">Resolved</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Damage Report</button>
+        <a href="/damage_reports" class="btn btn-secondary">Back to Damage Reports</a>
+    </form>
+</div>
+{% endblock %}
